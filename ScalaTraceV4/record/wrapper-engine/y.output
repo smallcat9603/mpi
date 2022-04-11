@@ -1,0 +1,1233 @@
+Terminals unused in grammar
+
+    ASNDIV
+    ASNMINUS
+    ASNMULT
+    ASNOP
+    ASNPLUS
+    COLON
+    COMMENT
+    DIV
+    EQ
+    GE
+    GT
+    INCR
+    LE
+    LT
+    MINUS
+    MOD
+    NL
+    PERIOD
+    PLUS
+    POUND
+    T_STRING
+    VERIFY
+    DOUBLE
+
+
+Grammar
+
+    0 $accept: stmt_list $end
+
+    1 stmt_list: %empty
+
+    2 $@1: %empty
+
+    3 stmt_list: stmt_list $@1 stmt
+
+    4 stmt: type ID LPAREN full_arg_list RPAREN SEMI
+    5     | type ID LPAREN full_arg_list RPAREN LBRACE directives RBRACE vcode_directives SEMI
+    6     | BOOT LBRACE bdirectives RBRACE SEMI
+
+    7 vcode_directives: %empty
+    8                 | vcode_directives vcode_directive
+
+    9 $@2: %empty
+
+   10 vcode_directive: VCODE_G_PRE_B $@2 vcodes VCODE_G_PRE_E
+
+   11 $@3: %empty
+
+   12 vcode_directive: VCODE_G_POST_B $@3 vcodes VCODE_G_POST_E
+
+   13 $@4: %empty
+
+   14 vcode_directive: VCODE_L_PRE_B $@4 vcodes VCODE_L_PRE_E
+
+   15 $@5: %empty
+
+   16 vcode_directive: VCODE_L_POST_B $@5 vcodes VCODE_L_POST_E
+
+   17 $@6: %empty
+
+   18 vcode_directive: WRAPPER_PRE_B $@6 vcodes WRAPPER_PRE_E
+
+   19 $@7: %empty
+
+   20 vcode_directive: WRAPPER_POST_B $@7 vcodes WRAPPER_POST_E
+
+   21 vcodes: %empty
+   22       | vcodes VCODE
+
+   23 typemod: %empty
+   24        | T_EXTERN
+   25        | T_CONST
+   26        | T_VOLATILE
+
+   27 pointer: %empty
+   28        | ASTERICK
+   29        | ASTERICK ASTERICK
+   30        | ASTERICK ASTERICK ASTERICK
+
+   31 type: typemod T_INT pointer
+   32     | typemod T_DOUBLE pointer
+   33     | typemod T_VOID pointer
+   34     | typemod T_CHAR pointer
+   35     | typemod T_STRUCT ID pointer
+   36     | typemod ID pointer
+
+   37 full_arg_list: arg_list
+
+   38 $@8: %empty
+
+   39 full_arg_list: arg_list COMMA $@8 ELLIPSIS
+
+   40 arg_list: %empty
+
+   41 $@9: %empty
+
+   42 arg_list: arg_list COMMA $@9 arg
+
+   43 $@10: %empty
+
+   44 arg_list: $@10 arg
+
+   45 arg: type ID
+   46    | type ID LBRACKET RBRACKET
+   47    | type ID LBRACKET RBRACKET LBRACKET INTEGER RBRACKET
+   48    | type ID LBRACKET RBRACKET LBRACKET ID RBRACKET
+   49    | type
+
+   50 bdirectives: %empty
+   51            | bdirectives bdirective
+
+   52 bdirective: ATTR ID SEMI
+
+   53 directives: %empty
+   54           | directives directive
+
+   55 directive: SAVE ID SEMI
+   56          | NOSAVE ID SEMI
+   57          | PRE QSTRING SEMI
+   58          | POST QSTRING SEMI
+   59          | EXTRAFIELD QSTRING QSTRING SEMI
+   60          | SET ID SEMI
+   61          | CLR ID SEMI
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    ASNDIV <i> (258)
+    ASNMINUS <i> (259)
+    ASNMULT <i> (260)
+    ASNOP <i> (261)
+    ASNPLUS <i> (262)
+    ASTERICK <i> (263) 28 29 30
+    ATTR <i> (264) 52
+    BOOT <i> (265) 6
+    CLR <i> (266) 61
+    COLON <i> (267)
+    COMMA <i> (268) 39 42
+    COMMENT <i> (269)
+    DIV <i> (270)
+    ELLIPSIS <i> (271) 39
+    EQ <i> (272)
+    EXTRAFIELD <i> (273) 59
+    GE <i> (274)
+    GT <i> (275)
+    INCR <i> (276)
+    INTEGER <i> (277) 47
+    LBRACE <i> (278) 5 6
+    LBRACKET <i> (279) 46 47 48
+    LE <i> (280)
+    LPAREN <i> (281) 4 5
+    LT <i> (282)
+    MINUS <i> (283)
+    MOD <i> (284)
+    NL <i> (285)
+    NOSAVE <i> (286) 56
+    PRE <i> (287) 57
+    POST <i> (288) 58
+    PERIOD <i> (289)
+    PLUS <i> (290)
+    POUND <i> (291)
+    RBRACE <i> (292) 5 6
+    RBRACKET <i> (293) 46 47 48
+    RPAREN <i> (294) 4 5
+    SAVE <i> (295) 55
+    SEMI <i> (296) 4 5 6 52 55 56 57 58 59 60 61
+    SET <i> (297) 60
+    T_CHAR <i> (298) 34
+    T_CONST <i> (299) 25
+    T_DOUBLE <i> (300) 32
+    T_EXTERN <i> (301) 24
+    T_INT <i> (302) 31
+    T_STRING <i> (303)
+    T_STRUCT <i> (304) 35
+    T_VOID <i> (305) 33
+    T_VOLATILE <i> (306) 26
+    VERIFY <i> (307)
+    VCODE <i> (308) 22
+    VCODE_G_PRE_B <i> (309) 10
+    VCODE_G_PRE_E <i> (310) 10
+    VCODE_G_POST_B <i> (311) 12
+    VCODE_G_POST_E <i> (312) 12
+    VCODE_L_PRE_B <i> (313) 14
+    VCODE_L_PRE_E <i> (314) 14
+    VCODE_L_POST_B <i> (315) 16
+    VCODE_L_POST_E <i> (316) 16
+    WRAPPER_PRE_B <i> (317) 18
+    WRAPPER_PRE_E <i> (318) 18
+    WRAPPER_POST_B <i> (319) 20
+    WRAPPER_POST_E <i> (320) 20
+    DOUBLE <r> (321)
+    ID <s> (322) 4 5 35 36 45 46 47 48 52 55 56 60 61
+    QSTRING <s> (323) 57 58 59
+
+
+Nonterminals, with rules where they appear
+
+    $accept (69)
+        on left: 0
+    stmt_list (70)
+        on left: 1 3
+        on right: 0 3
+    $@1 (71)
+        on left: 2
+        on right: 3
+    stmt (72)
+        on left: 4 5 6
+        on right: 3
+    vcode_directives (73)
+        on left: 7 8
+        on right: 5 8
+    vcode_directive (74)
+        on left: 10 12 14 16 18 20
+        on right: 8
+    $@2 (75)
+        on left: 9
+        on right: 10
+    $@3 (76)
+        on left: 11
+        on right: 12
+    $@4 (77)
+        on left: 13
+        on right: 14
+    $@5 (78)
+        on left: 15
+        on right: 16
+    $@6 (79)
+        on left: 17
+        on right: 18
+    $@7 (80)
+        on left: 19
+        on right: 20
+    vcodes (81)
+        on left: 21 22
+        on right: 10 12 14 16 18 20 22
+    typemod (82)
+        on left: 23 24 25 26
+        on right: 31 32 33 34 35 36
+    pointer (83)
+        on left: 27 28 29 30
+        on right: 31 32 33 34 35 36
+    type (84)
+        on left: 31 32 33 34 35 36
+        on right: 4 5 45 46 47 48 49
+    full_arg_list (85)
+        on left: 37 39
+        on right: 4 5
+    $@8 (86)
+        on left: 38
+        on right: 39
+    arg_list (87)
+        on left: 40 42 44
+        on right: 37 39 42
+    $@9 (88)
+        on left: 41
+        on right: 42
+    $@10 (89)
+        on left: 43
+        on right: 44
+    arg (90)
+        on left: 45 46 47 48 49
+        on right: 42 44
+    bdirectives (91)
+        on left: 50 51
+        on right: 6 51
+    bdirective (92)
+        on left: 52
+        on right: 51
+    directives (93)
+        on left: 53 54
+        on right: 5 54
+    directive (94)
+        on left: 55 56 57 58 59 60 61
+        on right: 54
+
+
+State 0
+
+    0 $accept: . stmt_list $end
+
+    $default  reduce using rule 1 (stmt_list)
+
+    stmt_list  go to state 1
+
+
+State 1
+
+    0 $accept: stmt_list . $end
+    3 stmt_list: stmt_list . $@1 stmt
+
+    $end  shift, and go to state 2
+
+    $default  reduce using rule 2 ($@1)
+
+    $@1  go to state 3
+
+
+State 2
+
+    0 $accept: stmt_list $end .
+
+    $default  accept
+
+
+State 3
+
+    3 stmt_list: stmt_list $@1 . stmt
+
+    BOOT        shift, and go to state 4
+    T_CONST     shift, and go to state 5
+    T_EXTERN    shift, and go to state 6
+    T_VOLATILE  shift, and go to state 7
+
+    $default  reduce using rule 23 (typemod)
+
+    stmt     go to state 8
+    typemod  go to state 9
+    type     go to state 10
+
+
+State 4
+
+    6 stmt: BOOT . LBRACE bdirectives RBRACE SEMI
+
+    LBRACE  shift, and go to state 11
+
+
+State 5
+
+   25 typemod: T_CONST .
+
+    $default  reduce using rule 25 (typemod)
+
+
+State 6
+
+   24 typemod: T_EXTERN .
+
+    $default  reduce using rule 24 (typemod)
+
+
+State 7
+
+   26 typemod: T_VOLATILE .
+
+    $default  reduce using rule 26 (typemod)
+
+
+State 8
+
+    3 stmt_list: stmt_list $@1 stmt .
+
+    $default  reduce using rule 3 (stmt_list)
+
+
+State 9
+
+   31 type: typemod . T_INT pointer
+   32     | typemod . T_DOUBLE pointer
+   33     | typemod . T_VOID pointer
+   34     | typemod . T_CHAR pointer
+   35     | typemod . T_STRUCT ID pointer
+   36     | typemod . ID pointer
+
+    T_CHAR    shift, and go to state 12
+    T_DOUBLE  shift, and go to state 13
+    T_INT     shift, and go to state 14
+    T_STRUCT  shift, and go to state 15
+    T_VOID    shift, and go to state 16
+    ID        shift, and go to state 17
+
+
+State 10
+
+    4 stmt: type . ID LPAREN full_arg_list RPAREN SEMI
+    5     | type . ID LPAREN full_arg_list RPAREN LBRACE directives RBRACE vcode_directives SEMI
+
+    ID  shift, and go to state 18
+
+
+State 11
+
+    6 stmt: BOOT LBRACE . bdirectives RBRACE SEMI
+
+    $default  reduce using rule 50 (bdirectives)
+
+    bdirectives  go to state 19
+
+
+State 12
+
+   34 type: typemod T_CHAR . pointer
+
+    ASTERICK  shift, and go to state 20
+
+    $default  reduce using rule 27 (pointer)
+
+    pointer  go to state 21
+
+
+State 13
+
+   32 type: typemod T_DOUBLE . pointer
+
+    ASTERICK  shift, and go to state 20
+
+    $default  reduce using rule 27 (pointer)
+
+    pointer  go to state 22
+
+
+State 14
+
+   31 type: typemod T_INT . pointer
+
+    ASTERICK  shift, and go to state 20
+
+    $default  reduce using rule 27 (pointer)
+
+    pointer  go to state 23
+
+
+State 15
+
+   35 type: typemod T_STRUCT . ID pointer
+
+    ID  shift, and go to state 24
+
+
+State 16
+
+   33 type: typemod T_VOID . pointer
+
+    ASTERICK  shift, and go to state 20
+
+    $default  reduce using rule 27 (pointer)
+
+    pointer  go to state 25
+
+
+State 17
+
+   36 type: typemod ID . pointer
+
+    ASTERICK  shift, and go to state 20
+
+    $default  reduce using rule 27 (pointer)
+
+    pointer  go to state 26
+
+
+State 18
+
+    4 stmt: type ID . LPAREN full_arg_list RPAREN SEMI
+    5     | type ID . LPAREN full_arg_list RPAREN LBRACE directives RBRACE vcode_directives SEMI
+
+    LPAREN  shift, and go to state 27
+
+
+State 19
+
+    6 stmt: BOOT LBRACE bdirectives . RBRACE SEMI
+   51 bdirectives: bdirectives . bdirective
+
+    ATTR    shift, and go to state 28
+    RBRACE  shift, and go to state 29
+
+    bdirective  go to state 30
+
+
+State 20
+
+   28 pointer: ASTERICK .
+   29        | ASTERICK . ASTERICK
+   30        | ASTERICK . ASTERICK ASTERICK
+
+    ASTERICK  shift, and go to state 31
+
+    $default  reduce using rule 28 (pointer)
+
+
+State 21
+
+   34 type: typemod T_CHAR pointer .
+
+    $default  reduce using rule 34 (type)
+
+
+State 22
+
+   32 type: typemod T_DOUBLE pointer .
+
+    $default  reduce using rule 32 (type)
+
+
+State 23
+
+   31 type: typemod T_INT pointer .
+
+    $default  reduce using rule 31 (type)
+
+
+State 24
+
+   35 type: typemod T_STRUCT ID . pointer
+
+    ASTERICK  shift, and go to state 20
+
+    $default  reduce using rule 27 (pointer)
+
+    pointer  go to state 32
+
+
+State 25
+
+   33 type: typemod T_VOID pointer .
+
+    $default  reduce using rule 33 (type)
+
+
+State 26
+
+   36 type: typemod ID pointer .
+
+    $default  reduce using rule 36 (type)
+
+
+State 27
+
+    4 stmt: type ID LPAREN . full_arg_list RPAREN SEMI
+    5     | type ID LPAREN . full_arg_list RPAREN LBRACE directives RBRACE vcode_directives SEMI
+
+    COMMA     reduce using rule 40 (arg_list)
+    RPAREN    reduce using rule 40 (arg_list)
+    $default  reduce using rule 43 ($@10)
+
+    full_arg_list  go to state 33
+    arg_list       go to state 34
+    $@10           go to state 35
+
+
+State 28
+
+   52 bdirective: ATTR . ID SEMI
+
+    ID  shift, and go to state 36
+
+
+State 29
+
+    6 stmt: BOOT LBRACE bdirectives RBRACE . SEMI
+
+    SEMI  shift, and go to state 37
+
+
+State 30
+
+   51 bdirectives: bdirectives bdirective .
+
+    $default  reduce using rule 51 (bdirectives)
+
+
+State 31
+
+   29 pointer: ASTERICK ASTERICK .
+   30        | ASTERICK ASTERICK . ASTERICK
+
+    ASTERICK  shift, and go to state 38
+
+    $default  reduce using rule 29 (pointer)
+
+
+State 32
+
+   35 type: typemod T_STRUCT ID pointer .
+
+    $default  reduce using rule 35 (type)
+
+
+State 33
+
+    4 stmt: type ID LPAREN full_arg_list . RPAREN SEMI
+    5     | type ID LPAREN full_arg_list . RPAREN LBRACE directives RBRACE vcode_directives SEMI
+
+    RPAREN  shift, and go to state 39
+
+
+State 34
+
+   37 full_arg_list: arg_list .
+   39              | arg_list . COMMA $@8 ELLIPSIS
+   42 arg_list: arg_list . COMMA $@9 arg
+
+    COMMA  shift, and go to state 40
+
+    $default  reduce using rule 37 (full_arg_list)
+
+
+State 35
+
+   44 arg_list: $@10 . arg
+
+    T_CONST     shift, and go to state 5
+    T_EXTERN    shift, and go to state 6
+    T_VOLATILE  shift, and go to state 7
+
+    $default  reduce using rule 23 (typemod)
+
+    typemod  go to state 9
+    type     go to state 41
+    arg      go to state 42
+
+
+State 36
+
+   52 bdirective: ATTR ID . SEMI
+
+    SEMI  shift, and go to state 43
+
+
+State 37
+
+    6 stmt: BOOT LBRACE bdirectives RBRACE SEMI .
+
+    $default  reduce using rule 6 (stmt)
+
+
+State 38
+
+   30 pointer: ASTERICK ASTERICK ASTERICK .
+
+    $default  reduce using rule 30 (pointer)
+
+
+State 39
+
+    4 stmt: type ID LPAREN full_arg_list RPAREN . SEMI
+    5     | type ID LPAREN full_arg_list RPAREN . LBRACE directives RBRACE vcode_directives SEMI
+
+    LBRACE  shift, and go to state 44
+    SEMI    shift, and go to state 45
+
+
+State 40
+
+   39 full_arg_list: arg_list COMMA . $@8 ELLIPSIS
+   42 arg_list: arg_list COMMA . $@9 arg
+
+    ELLIPSIS  reduce using rule 38 ($@8)
+    $default  reduce using rule 41 ($@9)
+
+    $@8  go to state 46
+    $@9  go to state 47
+
+
+State 41
+
+   45 arg: type . ID
+   46    | type . ID LBRACKET RBRACKET
+   47    | type . ID LBRACKET RBRACKET LBRACKET INTEGER RBRACKET
+   48    | type . ID LBRACKET RBRACKET LBRACKET ID RBRACKET
+   49    | type .
+
+    ID  shift, and go to state 48
+
+    $default  reduce using rule 49 (arg)
+
+
+State 42
+
+   44 arg_list: $@10 arg .
+
+    $default  reduce using rule 44 (arg_list)
+
+
+State 43
+
+   52 bdirective: ATTR ID SEMI .
+
+    $default  reduce using rule 52 (bdirective)
+
+
+State 44
+
+    5 stmt: type ID LPAREN full_arg_list RPAREN LBRACE . directives RBRACE vcode_directives SEMI
+
+    $default  reduce using rule 53 (directives)
+
+    directives  go to state 49
+
+
+State 45
+
+    4 stmt: type ID LPAREN full_arg_list RPAREN SEMI .
+
+    $default  reduce using rule 4 (stmt)
+
+
+State 46
+
+   39 full_arg_list: arg_list COMMA $@8 . ELLIPSIS
+
+    ELLIPSIS  shift, and go to state 50
+
+
+State 47
+
+   42 arg_list: arg_list COMMA $@9 . arg
+
+    T_CONST     shift, and go to state 5
+    T_EXTERN    shift, and go to state 6
+    T_VOLATILE  shift, and go to state 7
+
+    $default  reduce using rule 23 (typemod)
+
+    typemod  go to state 9
+    type     go to state 41
+    arg      go to state 51
+
+
+State 48
+
+   45 arg: type ID .
+   46    | type ID . LBRACKET RBRACKET
+   47    | type ID . LBRACKET RBRACKET LBRACKET INTEGER RBRACKET
+   48    | type ID . LBRACKET RBRACKET LBRACKET ID RBRACKET
+
+    LBRACKET  shift, and go to state 52
+
+    $default  reduce using rule 45 (arg)
+
+
+State 49
+
+    5 stmt: type ID LPAREN full_arg_list RPAREN LBRACE directives . RBRACE vcode_directives SEMI
+   54 directives: directives . directive
+
+    CLR         shift, and go to state 53
+    EXTRAFIELD  shift, and go to state 54
+    NOSAVE      shift, and go to state 55
+    PRE         shift, and go to state 56
+    POST        shift, and go to state 57
+    RBRACE      shift, and go to state 58
+    SAVE        shift, and go to state 59
+    SET         shift, and go to state 60
+
+    directive  go to state 61
+
+
+State 50
+
+   39 full_arg_list: arg_list COMMA $@8 ELLIPSIS .
+
+    $default  reduce using rule 39 (full_arg_list)
+
+
+State 51
+
+   42 arg_list: arg_list COMMA $@9 arg .
+
+    $default  reduce using rule 42 (arg_list)
+
+
+State 52
+
+   46 arg: type ID LBRACKET . RBRACKET
+   47    | type ID LBRACKET . RBRACKET LBRACKET INTEGER RBRACKET
+   48    | type ID LBRACKET . RBRACKET LBRACKET ID RBRACKET
+
+    RBRACKET  shift, and go to state 62
+
+
+State 53
+
+   61 directive: CLR . ID SEMI
+
+    ID  shift, and go to state 63
+
+
+State 54
+
+   59 directive: EXTRAFIELD . QSTRING QSTRING SEMI
+
+    QSTRING  shift, and go to state 64
+
+
+State 55
+
+   56 directive: NOSAVE . ID SEMI
+
+    ID  shift, and go to state 65
+
+
+State 56
+
+   57 directive: PRE . QSTRING SEMI
+
+    QSTRING  shift, and go to state 66
+
+
+State 57
+
+   58 directive: POST . QSTRING SEMI
+
+    QSTRING  shift, and go to state 67
+
+
+State 58
+
+    5 stmt: type ID LPAREN full_arg_list RPAREN LBRACE directives RBRACE . vcode_directives SEMI
+
+    $default  reduce using rule 7 (vcode_directives)
+
+    vcode_directives  go to state 68
+
+
+State 59
+
+   55 directive: SAVE . ID SEMI
+
+    ID  shift, and go to state 69
+
+
+State 60
+
+   60 directive: SET . ID SEMI
+
+    ID  shift, and go to state 70
+
+
+State 61
+
+   54 directives: directives directive .
+
+    $default  reduce using rule 54 (directives)
+
+
+State 62
+
+   46 arg: type ID LBRACKET RBRACKET .
+   47    | type ID LBRACKET RBRACKET . LBRACKET INTEGER RBRACKET
+   48    | type ID LBRACKET RBRACKET . LBRACKET ID RBRACKET
+
+    LBRACKET  shift, and go to state 71
+
+    $default  reduce using rule 46 (arg)
+
+
+State 63
+
+   61 directive: CLR ID . SEMI
+
+    SEMI  shift, and go to state 72
+
+
+State 64
+
+   59 directive: EXTRAFIELD QSTRING . QSTRING SEMI
+
+    QSTRING  shift, and go to state 73
+
+
+State 65
+
+   56 directive: NOSAVE ID . SEMI
+
+    SEMI  shift, and go to state 74
+
+
+State 66
+
+   57 directive: PRE QSTRING . SEMI
+
+    SEMI  shift, and go to state 75
+
+
+State 67
+
+   58 directive: POST QSTRING . SEMI
+
+    SEMI  shift, and go to state 76
+
+
+State 68
+
+    5 stmt: type ID LPAREN full_arg_list RPAREN LBRACE directives RBRACE vcode_directives . SEMI
+    8 vcode_directives: vcode_directives . vcode_directive
+
+    SEMI            shift, and go to state 77
+    VCODE_G_PRE_B   shift, and go to state 78
+    VCODE_G_POST_B  shift, and go to state 79
+    VCODE_L_PRE_B   shift, and go to state 80
+    VCODE_L_POST_B  shift, and go to state 81
+    WRAPPER_PRE_B   shift, and go to state 82
+    WRAPPER_POST_B  shift, and go to state 83
+
+    vcode_directive  go to state 84
+
+
+State 69
+
+   55 directive: SAVE ID . SEMI
+
+    SEMI  shift, and go to state 85
+
+
+State 70
+
+   60 directive: SET ID . SEMI
+
+    SEMI  shift, and go to state 86
+
+
+State 71
+
+   47 arg: type ID LBRACKET RBRACKET LBRACKET . INTEGER RBRACKET
+   48    | type ID LBRACKET RBRACKET LBRACKET . ID RBRACKET
+
+    INTEGER  shift, and go to state 87
+    ID       shift, and go to state 88
+
+
+State 72
+
+   61 directive: CLR ID SEMI .
+
+    $default  reduce using rule 61 (directive)
+
+
+State 73
+
+   59 directive: EXTRAFIELD QSTRING QSTRING . SEMI
+
+    SEMI  shift, and go to state 89
+
+
+State 74
+
+   56 directive: NOSAVE ID SEMI .
+
+    $default  reduce using rule 56 (directive)
+
+
+State 75
+
+   57 directive: PRE QSTRING SEMI .
+
+    $default  reduce using rule 57 (directive)
+
+
+State 76
+
+   58 directive: POST QSTRING SEMI .
+
+    $default  reduce using rule 58 (directive)
+
+
+State 77
+
+    5 stmt: type ID LPAREN full_arg_list RPAREN LBRACE directives RBRACE vcode_directives SEMI .
+
+    $default  reduce using rule 5 (stmt)
+
+
+State 78
+
+   10 vcode_directive: VCODE_G_PRE_B . $@2 vcodes VCODE_G_PRE_E
+
+    $default  reduce using rule 9 ($@2)
+
+    $@2  go to state 90
+
+
+State 79
+
+   12 vcode_directive: VCODE_G_POST_B . $@3 vcodes VCODE_G_POST_E
+
+    $default  reduce using rule 11 ($@3)
+
+    $@3  go to state 91
+
+
+State 80
+
+   14 vcode_directive: VCODE_L_PRE_B . $@4 vcodes VCODE_L_PRE_E
+
+    $default  reduce using rule 13 ($@4)
+
+    $@4  go to state 92
+
+
+State 81
+
+   16 vcode_directive: VCODE_L_POST_B . $@5 vcodes VCODE_L_POST_E
+
+    $default  reduce using rule 15 ($@5)
+
+    $@5  go to state 93
+
+
+State 82
+
+   18 vcode_directive: WRAPPER_PRE_B . $@6 vcodes WRAPPER_PRE_E
+
+    $default  reduce using rule 17 ($@6)
+
+    $@6  go to state 94
+
+
+State 83
+
+   20 vcode_directive: WRAPPER_POST_B . $@7 vcodes WRAPPER_POST_E
+
+    $default  reduce using rule 19 ($@7)
+
+    $@7  go to state 95
+
+
+State 84
+
+    8 vcode_directives: vcode_directives vcode_directive .
+
+    $default  reduce using rule 8 (vcode_directives)
+
+
+State 85
+
+   55 directive: SAVE ID SEMI .
+
+    $default  reduce using rule 55 (directive)
+
+
+State 86
+
+   60 directive: SET ID SEMI .
+
+    $default  reduce using rule 60 (directive)
+
+
+State 87
+
+   47 arg: type ID LBRACKET RBRACKET LBRACKET INTEGER . RBRACKET
+
+    RBRACKET  shift, and go to state 96
+
+
+State 88
+
+   48 arg: type ID LBRACKET RBRACKET LBRACKET ID . RBRACKET
+
+    RBRACKET  shift, and go to state 97
+
+
+State 89
+
+   59 directive: EXTRAFIELD QSTRING QSTRING SEMI .
+
+    $default  reduce using rule 59 (directive)
+
+
+State 90
+
+   10 vcode_directive: VCODE_G_PRE_B $@2 . vcodes VCODE_G_PRE_E
+
+    $default  reduce using rule 21 (vcodes)
+
+    vcodes  go to state 98
+
+
+State 91
+
+   12 vcode_directive: VCODE_G_POST_B $@3 . vcodes VCODE_G_POST_E
+
+    $default  reduce using rule 21 (vcodes)
+
+    vcodes  go to state 99
+
+
+State 92
+
+   14 vcode_directive: VCODE_L_PRE_B $@4 . vcodes VCODE_L_PRE_E
+
+    $default  reduce using rule 21 (vcodes)
+
+    vcodes  go to state 100
+
+
+State 93
+
+   16 vcode_directive: VCODE_L_POST_B $@5 . vcodes VCODE_L_POST_E
+
+    $default  reduce using rule 21 (vcodes)
+
+    vcodes  go to state 101
+
+
+State 94
+
+   18 vcode_directive: WRAPPER_PRE_B $@6 . vcodes WRAPPER_PRE_E
+
+    $default  reduce using rule 21 (vcodes)
+
+    vcodes  go to state 102
+
+
+State 95
+
+   20 vcode_directive: WRAPPER_POST_B $@7 . vcodes WRAPPER_POST_E
+
+    $default  reduce using rule 21 (vcodes)
+
+    vcodes  go to state 103
+
+
+State 96
+
+   47 arg: type ID LBRACKET RBRACKET LBRACKET INTEGER RBRACKET .
+
+    $default  reduce using rule 47 (arg)
+
+
+State 97
+
+   48 arg: type ID LBRACKET RBRACKET LBRACKET ID RBRACKET .
+
+    $default  reduce using rule 48 (arg)
+
+
+State 98
+
+   10 vcode_directive: VCODE_G_PRE_B $@2 vcodes . VCODE_G_PRE_E
+   22 vcodes: vcodes . VCODE
+
+    VCODE          shift, and go to state 104
+    VCODE_G_PRE_E  shift, and go to state 105
+
+
+State 99
+
+   12 vcode_directive: VCODE_G_POST_B $@3 vcodes . VCODE_G_POST_E
+   22 vcodes: vcodes . VCODE
+
+    VCODE           shift, and go to state 104
+    VCODE_G_POST_E  shift, and go to state 106
+
+
+State 100
+
+   14 vcode_directive: VCODE_L_PRE_B $@4 vcodes . VCODE_L_PRE_E
+   22 vcodes: vcodes . VCODE
+
+    VCODE          shift, and go to state 104
+    VCODE_L_PRE_E  shift, and go to state 107
+
+
+State 101
+
+   16 vcode_directive: VCODE_L_POST_B $@5 vcodes . VCODE_L_POST_E
+   22 vcodes: vcodes . VCODE
+
+    VCODE           shift, and go to state 104
+    VCODE_L_POST_E  shift, and go to state 108
+
+
+State 102
+
+   18 vcode_directive: WRAPPER_PRE_B $@6 vcodes . WRAPPER_PRE_E
+   22 vcodes: vcodes . VCODE
+
+    VCODE          shift, and go to state 104
+    WRAPPER_PRE_E  shift, and go to state 109
+
+
+State 103
+
+   20 vcode_directive: WRAPPER_POST_B $@7 vcodes . WRAPPER_POST_E
+   22 vcodes: vcodes . VCODE
+
+    VCODE           shift, and go to state 104
+    WRAPPER_POST_E  shift, and go to state 110
+
+
+State 104
+
+   22 vcodes: vcodes VCODE .
+
+    $default  reduce using rule 22 (vcodes)
+
+
+State 105
+
+   10 vcode_directive: VCODE_G_PRE_B $@2 vcodes VCODE_G_PRE_E .
+
+    $default  reduce using rule 10 (vcode_directive)
+
+
+State 106
+
+   12 vcode_directive: VCODE_G_POST_B $@3 vcodes VCODE_G_POST_E .
+
+    $default  reduce using rule 12 (vcode_directive)
+
+
+State 107
+
+   14 vcode_directive: VCODE_L_PRE_B $@4 vcodes VCODE_L_PRE_E .
+
+    $default  reduce using rule 14 (vcode_directive)
+
+
+State 108
+
+   16 vcode_directive: VCODE_L_POST_B $@5 vcodes VCODE_L_POST_E .
+
+    $default  reduce using rule 16 (vcode_directive)
+
+
+State 109
+
+   18 vcode_directive: WRAPPER_PRE_B $@6 vcodes WRAPPER_PRE_E .
+
+    $default  reduce using rule 18 (vcode_directive)
+
+
+State 110
+
+   20 vcode_directive: WRAPPER_POST_B $@7 vcodes WRAPPER_POST_E .
+
+    $default  reduce using rule 20 (vcode_directive)
