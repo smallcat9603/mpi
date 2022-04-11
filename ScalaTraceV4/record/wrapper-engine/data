@@ -1,0 +1,144 @@
+./mpi_wrappers.c:    fprintf (wrapperFile, "uop->op = umpi_%s;\n", name);
+./mpi_wrappers.c:    fprintf (wrapperFile, "uop->rank = umpi_rank;\n");
+./mpi_wrappers.c:    fputs ("uop->seq_num = umpi_task_seq_num++;\n", wrapperFile);
+./mpi_wrappers.c:    fputs ("uop->pc = pc;\n", wrapperFile);
+./mpi_wrappers.c:                fprintf (wrapperFile, "uop->data.%s.op = *(op_ptr);\n", nameStr);
+./mpi_wrappers.c:                         "uop->data.%s.%s_src = %s->MPI_SOURCE;\n", 
+./mpi_wrappers.c:                         "uop->data.%s.statuses_srcs = "
+./mpi_wrappers.c:                         "(int *) malloc (uop->data.%s.count * sizeof(int));\n"
+./mpi_wrappers.c:                         "assert(uop->data.%s.statuses_srcs);\n{\n"
+./mpi_wrappers.c:                         "for(i=0;i<uop->data.%s.count;i++) {\n"
+./mpi_wrappers.c:                         "uop->data.%s.statuses_srcs[i] = "
+./mpi_wrappers.c:                fprintf (wrapperFile, "uop->data.%s.%s = &(%s);\n",
+./mpi_wrappers.c:                fprintf (wrapperFile, "uop->data.%s.%s = %s;\n",
+./mpi_wrappers.c:                         "uop->data.%s.%s = "
+./mpi_wrappers.c:                         "(%s *) malloc (uop->data.%s.count * sizeof (%s));\n"
+./mpi_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                         "uop->data.%s.count * sizeof (%s));\n",
+./mpi_wrappers.c:                             //"PMPI_Comm_rank (uop->data.%s.comm, "
+./mpi_wrappers.c:                             //"PMPI_Comm_size (uop->data.%s.comm, "
+./mpi_wrappers.c:                             "uop->data.%s.%s = "
+./mpi_wrappers.c:                             "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                             "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                             "uop->data.%s.%s = NULL;\n"
+./mpi_wrappers.c:                             //"PMPI_Comm_size (uop->data.%s.comm, "
+./mpi_wrappers.c:                             "uop->data.%s.%s = "
+./mpi_wrappers.c:                             "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                             "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:              fprintf(wrapperFile, "uop->profile_level = level;\n");
+./mpi_wrappers.c:                         "PMPI_Cartdim_get (uop->data.%s.comm, &uop->data.%s.size);\n"
+./mpi_wrappers.c:                         "uop->data.%s.%s = "
+./mpi_wrappers.c:                         "(int *) malloc (uop->data.%s.size * sizeof (int));\n"
+./mpi_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                         "uop->data.%s.size * sizeof (int));\n"
+./mpi_wrappers.c:                         "uop->data.%s.%s = "
+./mpi_wrappers.c:                         "(int *) malloc (uop->data.%s.edgecount * sizeof (int));\n"
+./mpi_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                         "uop->data.%s.edgecount * sizeof (int));\n",
+./mpi_wrappers.c:                         "uop->data.%s.array_of_degrees[uop->data.%s.count-1];\n"
+./mpi_wrappers.c:                         "uop->data.%s.%s = "
+./mpi_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                         "uop->data.%s.%s = "
+./mpi_wrappers.c:                         "(MPI_Aint *) malloc (uop->data.%s.addrcount * sizeof (MPI_Aint));\n"
+./mpi_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                         "uop->data.%s.addrcount * sizeof (int));\n",
+./mpi_wrappers.c:                         "uop->data.%s.%s = "
+./mpi_wrappers.c:                         "(MPI_Datatype *) malloc (uop->data.%s.dtypecount * sizeof (MPI_Datatype));\n"
+./mpi_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                         "uop->data.%s.dtypecount * sizeof (int));\n",
+./mpi_wrappers.c:                         "uop->data.%s.%s = "
+./mpi_wrappers.c:                         "(int *) malloc (3 * uop->data.%s.count * sizeof (int));\n"
+./mpi_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                         "3 * uop->data.%s.count * sizeof (int));\n",
+./mpi_wrappers.c:                        "uop->data.%s.%s = "
+./mpi_wrappers.c:                        "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                        "bcopy (%s, uop->data.%s.%s, "
+./mpi_wrappers.c:                        "uop->data.%s.%s = "
+./mpi_wrappers.c:                        "assert (uop->data.%s.%s);\n"
+./mpi_wrappers.c:                        "bcopy (%s, uop->data.%s.%s, " 
+./mpi_wrappers.c:                         "uop->data.%s.%s = *(%s);\n", 
+./mpi_wrappers.c:                fprintf (wrapperFile, "\t\tuop->data.%s.%s = %s;\n",
+./mpi_wrappers.c:    fprintf (wrapperFile, "uop->order = umpi_preop;\n");
+./mpi_wrappers.c:    fprintf (wrapperFile, "uop->order = umpi_postop;\n");
+./mpi_wrappers.c:    fputs ("uop->res = MPI_rc;\n", wrapperFile);
+Binary file ./mpi_wrappers.o matches
+./posix_wrappers.c:    fprintf (posixWrapFile, "uop->op = umpi_%s;\n", name);
+./posix_wrappers.c:    fprintf (posixWrapFile, "uop->rank = umpi_rank;\n");
+./posix_wrappers.c:    fputs ("uop->seq_num = umpi_task_seq_num++;\n", posixWrapFile);
+./posix_wrappers.c:    fputs ("uop->pc = pc;\n", posixWrapFile);
+./posix_wrappers.c:                fprintf (posixWrapFile, "uop->data.%s.op = *(op_ptr);\n", nameStr);
+./posix_wrappers.c:                         "uop->data.%s.%s_src = %s->MPI_SOURCE;\n", 
+./posix_wrappers.c:                         "uop->data.%s.statuses_srcs = "
+./posix_wrappers.c:                         "(int *) malloc (uop->data.%s.count * sizeof(int));\n"
+./posix_wrappers.c:                         "assert(uop->data.%s.statuses_srcs);\n{\n"
+./posix_wrappers.c:                         "for(i=0;i<uop->data.%s.count;i++) {\n"
+./posix_wrappers.c:                         "uop->data.%s.statuses_srcs[i] = "
+./posix_wrappers.c:                fprintf (posixWrapFile, "uop->data.%s.%s = &(%s);\n",
+./posix_wrappers.c:                fprintf (posixWrapFile, "uop->data.%s.%s = (void*)%s;\n",
+./posix_wrappers.c:                         "uop->data.%s.%s = "
+./posix_wrappers.c:                         "(%s *) malloc (uop->data.%s.count * sizeof (%s));\n"
+./posix_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:                         "uop->data.%s.count * sizeof (%s));\n",
+./posix_wrappers.c:                             //"PMPI_Comm_rank (uop->data.%s.comm, "
+./posix_wrappers.c:                             //"PMPI_Comm_size (uop->data.%s.comm, "
+./posix_wrappers.c:                             "uop->data.%s.%s = "
+./posix_wrappers.c:                             "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                             "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:                             "uop->data.%s.%s = NULL;\n"
+./posix_wrappers.c:                             //"PMPI_Comm_size (uop->data.%s.comm, "
+./posix_wrappers.c:                             "uop->data.%s.%s = "
+./posix_wrappers.c:                             "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                             "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:              fprintf(posixWrapFile, "uop->profile_level = level;\n");
+./posix_wrappers.c:                         "PMPI_Cartdim_get (uop->data.%s.comm, &uop->data.%s.size);\n"
+./posix_wrappers.c:                         "uop->data.%s.%s = "
+./posix_wrappers.c:                         "(int *) malloc (uop->data.%s.size * sizeof (int));\n"
+./posix_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:                         "uop->data.%s.size * sizeof (int));\n"
+./posix_wrappers.c:                         "uop->data.%s.%s = "
+./posix_wrappers.c:                         "(int *) malloc (uop->data.%s.edgecount * sizeof (int));\n"
+./posix_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:                         "uop->data.%s.edgecount * sizeof (int));\n",
+./posix_wrappers.c:                         "uop->data.%s.array_of_degrees[uop->data.%s.count-1];\n"
+./posix_wrappers.c:                         "uop->data.%s.%s = "
+./posix_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:                         "uop->data.%s.%s = "
+./posix_wrappers.c:                         "(MPI_Aint *) malloc (uop->data.%s.addrcount * sizeof (MPI_Aint));\n"
+./posix_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:                         "uop->data.%s.addrcount * sizeof (int));\n",
+./posix_wrappers.c:                         "uop->data.%s.%s = "
+./posix_wrappers.c:                         "(MPI_Datatype *) malloc (uop->data.%s.dtypecount * sizeof (MPI_Datatype));\n"
+./posix_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:                         "uop->data.%s.dtypecount * sizeof (int));\n",
+./posix_wrappers.c:                         "uop->data.%s.%s = "
+./posix_wrappers.c:                         "(int *) malloc (3 * uop->data.%s.count * sizeof (int));\n"
+./posix_wrappers.c:                         "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                         "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:                         "3 * uop->data.%s.count * sizeof (int));\n",
+./posix_wrappers.c:                        "uop->data.%s.%s = "
+./posix_wrappers.c:                        "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                        "bcopy (%s, uop->data.%s.%s, "
+./posix_wrappers.c:			"uop->data.%s.%s = %s;\n",
+./posix_wrappers.c:                        "uop->data.%s.%s = "
+./posix_wrappers.c:                        "assert (uop->data.%s.%s);\n"
+./posix_wrappers.c:                        "bcopy (%s, uop->data.%s.%s, " 
+./posix_wrappers.c:                         "uop->data.%s.%s = *(%s);\n", 
+./posix_wrappers.c:                fprintf (posixWrapFile, "\t\tuop->data.%s.%s = %s;\n",
+./posix_wrappers.c:    fprintf (posixWrapFile, "uop->order = umpi_preop;\n");
+./posix_wrappers.c:    fprintf (posixWrapFile, "uop->order = umpi_postop;\n");
+./posix_wrappers.c:    fputs ("uop->res = MPI_rc;\n", posixWrapFile);
+Binary file ./posix_wrappers.o matches
+Binary file ./wrapper-engine.exe matches

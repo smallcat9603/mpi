@@ -1,0 +1,210 @@
+Using built-in specs.
+COLLECT_GCC=/opt/gcc/7.1.0/bin/../snos/bin/g++
+COLLECT_LTO_WRAPPER=/opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/lto-wrapper
+Target: x86_64-suse-linux
+Configured with: ../cray-gcc-7.1.0-201705230545.65f29659747b4/configure --prefix=/opt/gcc/7.1.0/snos --disable-nls --libdir=/opt/gcc/7.1.0/snos/lib --enable-languages=c,c++,fortran --with-gxx-include-dir=/opt/gcc/7.1.0/snos/include/g++ --with-slibdir=/opt/gcc/7.1.0/snos/lib --with-system-zlib --enable-shared --enable-__cxa_atexit --build=x86_64-suse-linux --with-ppl --with-cloog --disable-multilib
+Thread model: posix
+gcc version 7.1.0 20170502 (Cray Inc.) (GCC) 
+COLLECT_GCC_OPTIONS='-march=core-avx2' '-static' '-D' '__CRAYXC' '-D' '__CRAY_HASWELL' '-D' '__CRAYXT_COMPUTE_LINUX_TARGET' '-u' 'pthread_mutex_destroy' '-D' '__TARGET_LINUX__' '-v' '-MM' '-O0' '-g' '-D' 'MPICH_IGNORE_CXX_SEEK' '-I' '.' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc' '-D' 'IOTIMER' '-D' 'FEATURE_PREALLOC_MEM' '-D' 'FEATURE_RAND_DEST=6' '-I' '/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include' '-I' '/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include' '-I' '/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include' '-I' '/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include' '-I' '/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include' '-I' '/opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include' '-I' '/opt/cray/pe/pmi/5.0.12/include' '-I' '/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include' '-I' '/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include' '-I' '/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include' '-I' '/opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include' '-I' '/opt/cray-hss-devel/8.0.0/include' '-L/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/lib64' '-L/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/lib64' '-L/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/lib64' '-L/opt/cray/pe/pmi/5.0.12/lib64' '-L/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/lib64' '-L/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/lib64' '-L/opt/cray/pe/atp/2.1.1/libApp' '-L/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/lib64'
+ /opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/cc1plus -E -quiet -v -I . -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0 -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc -I /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include -I /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include -I /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include -I /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include -I /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include -I /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include -I /opt/cray/pe/pmi/5.0.12/include -I /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include -I /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include -I /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include -I /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include -I /opt/cray-hss-devel/8.0.0/include -MM -D_GNU_SOURCE -D __CRAYXC -D __CRAY_HASWELL -D __CRAYXT_COMPUTE_LINUX_TARGET -D __TARGET_LINUX__ -D MPICH_IGNORE_CXX_SEEK -D IOTIMER -D FEATURE_PREALLOC_MEM -D FEATURE_RAND_DEST=6 Timer.C -march=core-avx2 -g -fworking-directory -O0
+ignoring nonexistent directory "/opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/../../../../x86_64-suse-linux/include"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc"
+#include "..." search starts here:
+#include <...> search starts here:
+ .
+ /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include
+ /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include
+ /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include
+ /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include
+ /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include
+ /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include
+ /opt/cray/pe/pmi/5.0.12/include
+ /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include
+ /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include
+ /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include
+ /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include
+ /opt/cray-hss-devel/8.0.0/include
+ /opt/gcc/7.1.0/snos/include/g++
+ /opt/gcc/7.1.0/snos/include/g++/x86_64-suse-linux
+ /opt/gcc/7.1.0/snos/include/g++/backward
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include
+ /usr/local/include
+ /opt/gcc/7.1.0/snos/include
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include-fixed
+ /usr/include
+End of search list.
+In file included from Timer.C:1:0:
+Timer.h:4:10: fatal error: Event.h: No such file or directory
+ #include "Event.h"
+          ^~~~~~~~~
+compilation terminated.
+Using built-in specs.
+COLLECT_GCC=/opt/gcc/7.1.0/bin/../snos/bin/g++
+COLLECT_LTO_WRAPPER=/opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/lto-wrapper
+Target: x86_64-suse-linux
+Configured with: ../cray-gcc-7.1.0-201705230545.65f29659747b4/configure --prefix=/opt/gcc/7.1.0/snos --disable-nls --libdir=/opt/gcc/7.1.0/snos/lib --enable-languages=c,c++,fortran --with-gxx-include-dir=/opt/gcc/7.1.0/snos/include/g++ --with-slibdir=/opt/gcc/7.1.0/snos/lib --with-system-zlib --enable-shared --enable-__cxa_atexit --build=x86_64-suse-linux --with-ppl --with-cloog --disable-multilib
+Thread model: posix
+gcc version 7.1.0 20170502 (Cray Inc.) (GCC) 
+COLLECT_GCC_OPTIONS='-march=core-avx2' '-static' '-D' '__CRAYXC' '-D' '__CRAY_HASWELL' '-D' '__CRAYXT_COMPUTE_LINUX_TARGET' '-u' 'pthread_mutex_destroy' '-D' '__TARGET_LINUX__' '-v' '-MM' '-O0' '-g' '-D' 'MPICH_IGNORE_CXX_SEEK' '-I' '.' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc' '-D' 'IOTIMER' '-D' 'FEATURE_PREALLOC_MEM' '-D' 'FEATURE_RAND_DEST=6' '-I' '/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include' '-I' '/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include' '-I' '/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include' '-I' '/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include' '-I' '/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include' '-I' '/opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include' '-I' '/opt/cray/pe/pmi/5.0.12/include' '-I' '/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include' '-I' '/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include' '-I' '/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include' '-I' '/opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include' '-I' '/opt/cray-hss-devel/8.0.0/include' '-L/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/lib64' '-L/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/lib64' '-L/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/lib64' '-L/opt/cray/pe/pmi/5.0.12/lib64' '-L/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/lib64' '-L/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/lib64' '-L/opt/cray/pe/atp/2.1.1/libApp' '-L/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/lib64'
+ /opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/cc1plus -E -quiet -v -I . -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0 -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc -I /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include -I /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include -I /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include -I /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include -I /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include -I /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include -I /opt/cray/pe/pmi/5.0.12/include -I /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include -I /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include -I /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include -I /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include -I /opt/cray-hss-devel/8.0.0/include -MM -D_GNU_SOURCE -D __CRAYXC -D __CRAY_HASWELL -D __CRAYXT_COMPUTE_LINUX_TARGET -D __TARGET_LINUX__ -D MPICH_IGNORE_CXX_SEEK -D IOTIMER -D FEATURE_PREALLOC_MEM -D FEATURE_RAND_DEST=6 histo_exec.C -march=core-avx2 -g -fworking-directory -O0
+ignoring nonexistent directory "/opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/../../../../x86_64-suse-linux/include"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc"
+#include "..." search starts here:
+#include <...> search starts here:
+ .
+ /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include
+ /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include
+ /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include
+ /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include
+ /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include
+ /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include
+ /opt/cray/pe/pmi/5.0.12/include
+ /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include
+ /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include
+ /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include
+ /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include
+ /opt/cray-hss-devel/8.0.0/include
+ /opt/gcc/7.1.0/snos/include/g++
+ /opt/gcc/7.1.0/snos/include/g++/x86_64-suse-linux
+ /opt/gcc/7.1.0/snos/include/g++/backward
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include
+ /usr/local/include
+ /opt/gcc/7.1.0/snos/include
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include-fixed
+ /usr/include
+End of search list.
+In file included from histo_exec.C:1:0:
+histo_exec.h:12:10: fatal error: Trace.h: No such file or directory
+ #include "Trace.h"
+          ^~~~~~~~~
+compilation terminated.
+Using built-in specs.
+COLLECT_GCC=/opt/gcc/7.1.0/bin/../snos/bin/g++
+COLLECT_LTO_WRAPPER=/opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/lto-wrapper
+Target: x86_64-suse-linux
+Configured with: ../cray-gcc-7.1.0-201705230545.65f29659747b4/configure --prefix=/opt/gcc/7.1.0/snos --disable-nls --libdir=/opt/gcc/7.1.0/snos/lib --enable-languages=c,c++,fortran --with-gxx-include-dir=/opt/gcc/7.1.0/snos/include/g++ --with-slibdir=/opt/gcc/7.1.0/snos/lib --with-system-zlib --enable-shared --enable-__cxa_atexit --build=x86_64-suse-linux --with-ppl --with-cloog --disable-multilib
+Thread model: posix
+gcc version 7.1.0 20170502 (Cray Inc.) (GCC) 
+COLLECT_GCC_OPTIONS='-march=core-avx2' '-static' '-D' '__CRAYXC' '-D' '__CRAY_HASWELL' '-D' '__CRAYXT_COMPUTE_LINUX_TARGET' '-u' 'pthread_mutex_destroy' '-D' '__TARGET_LINUX__' '-v' '-MM' '-O0' '-g' '-D' 'MPICH_IGNORE_CXX_SEEK' '-I' '.' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc' '-D' 'IOTIMER' '-D' 'FEATURE_PREALLOC_MEM' '-D' 'FEATURE_RAND_DEST=6' '-I' '/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include' '-I' '/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include' '-I' '/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include' '-I' '/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include' '-I' '/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include' '-I' '/opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include' '-I' '/opt/cray/pe/pmi/5.0.12/include' '-I' '/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include' '-I' '/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include' '-I' '/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include' '-I' '/opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include' '-I' '/opt/cray-hss-devel/8.0.0/include' '-L/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/lib64' '-L/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/lib64' '-L/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/lib64' '-L/opt/cray/pe/pmi/5.0.12/lib64' '-L/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/lib64' '-L/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/lib64' '-L/opt/cray/pe/atp/2.1.1/libApp' '-L/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/lib64'
+ /opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/cc1plus -E -quiet -v -I . -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0 -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc -I /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include -I /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include -I /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include -I /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include -I /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include -I /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include -I /opt/cray/pe/pmi/5.0.12/include -I /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include -I /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include -I /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include -I /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include -I /opt/cray-hss-devel/8.0.0/include -MM -D_GNU_SOURCE -D __CRAYXC -D __CRAY_HASWELL -D __CRAYXT_COMPUTE_LINUX_TARGET -D __TARGET_LINUX__ -D MPICH_IGNORE_CXX_SEEK -D IOTIMER -D FEATURE_PREALLOC_MEM -D FEATURE_RAND_DEST=6 context.C -march=core-avx2 -g -fworking-directory -O0
+ignoring nonexistent directory "/opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/../../../../x86_64-suse-linux/include"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc"
+#include "..." search starts here:
+#include <...> search starts here:
+ .
+ /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include
+ /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include
+ /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include
+ /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include
+ /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include
+ /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include
+ /opt/cray/pe/pmi/5.0.12/include
+ /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include
+ /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include
+ /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include
+ /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include
+ /opt/cray-hss-devel/8.0.0/include
+ /opt/gcc/7.1.0/snos/include/g++
+ /opt/gcc/7.1.0/snos/include/g++/x86_64-suse-linux
+ /opt/gcc/7.1.0/snos/include/g++/backward
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include
+ /usr/local/include
+ /opt/gcc/7.1.0/snos/include
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include-fixed
+ /usr/include
+End of search list.
+In file included from context.C:5:0:
+context.h:8:10: fatal error: Event.h: No such file or directory
+ #include "Event.h"
+          ^~~~~~~~~
+compilation terminated.
+Using built-in specs.
+COLLECT_GCC=/opt/gcc/7.1.0/bin/../snos/bin/g++
+COLLECT_LTO_WRAPPER=/opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/lto-wrapper
+Target: x86_64-suse-linux
+Configured with: ../cray-gcc-7.1.0-201705230545.65f29659747b4/configure --prefix=/opt/gcc/7.1.0/snos --disable-nls --libdir=/opt/gcc/7.1.0/snos/lib --enable-languages=c,c++,fortran --with-gxx-include-dir=/opt/gcc/7.1.0/snos/include/g++ --with-slibdir=/opt/gcc/7.1.0/snos/lib --with-system-zlib --enable-shared --enable-__cxa_atexit --build=x86_64-suse-linux --with-ppl --with-cloog --disable-multilib
+Thread model: posix
+gcc version 7.1.0 20170502 (Cray Inc.) (GCC) 
+COLLECT_GCC_OPTIONS='-march=core-avx2' '-static' '-D' '__CRAYXC' '-D' '__CRAY_HASWELL' '-D' '__CRAYXT_COMPUTE_LINUX_TARGET' '-u' 'pthread_mutex_destroy' '-D' '__TARGET_LINUX__' '-v' '-MM' '-O0' '-g' '-D' 'MPICH_IGNORE_CXX_SEEK' '-I' '.' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc' '-D' 'IOTIMER' '-D' 'FEATURE_PREALLOC_MEM' '-D' 'FEATURE_RAND_DEST=6' '-I' '/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include' '-I' '/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include' '-I' '/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include' '-I' '/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include' '-I' '/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include' '-I' '/opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include' '-I' '/opt/cray/pe/pmi/5.0.12/include' '-I' '/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include' '-I' '/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include' '-I' '/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include' '-I' '/opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include' '-I' '/opt/cray-hss-devel/8.0.0/include' '-L/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/lib64' '-L/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/lib64' '-L/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/lib64' '-L/opt/cray/pe/pmi/5.0.12/lib64' '-L/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/lib64' '-L/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/lib64' '-L/opt/cray/pe/atp/2.1.1/libApp' '-L/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/lib64'
+ /opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/cc1plus -E -quiet -v -I . -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0 -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc -I /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include -I /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include -I /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include -I /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include -I /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include -I /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include -I /opt/cray/pe/pmi/5.0.12/include -I /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include -I /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include -I /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include -I /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include -I /opt/cray-hss-devel/8.0.0/include -MM -D_GNU_SOURCE -D __CRAYXC -D __CRAY_HASWELL -D __CRAYXT_COMPUTE_LINUX_TARGET -D __TARGET_LINUX__ -D MPICH_IGNORE_CXX_SEEK -D IOTIMER -D FEATURE_PREALLOC_MEM -D FEATURE_RAND_DEST=6 op_exec.C -march=core-avx2 -g -fworking-directory -O0
+ignoring nonexistent directory "/opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/../../../../x86_64-suse-linux/include"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc"
+#include "..." search starts here:
+#include <...> search starts here:
+ .
+ /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include
+ /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include
+ /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include
+ /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include
+ /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include
+ /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include
+ /opt/cray/pe/pmi/5.0.12/include
+ /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include
+ /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include
+ /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include
+ /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include
+ /opt/cray-hss-devel/8.0.0/include
+ /opt/gcc/7.1.0/snos/include/g++
+ /opt/gcc/7.1.0/snos/include/g++/x86_64-suse-linux
+ /opt/gcc/7.1.0/snos/include/g++/backward
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include
+ /usr/local/include
+ /opt/gcc/7.1.0/snos/include
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include-fixed
+ /usr/include
+End of search list.
+In file included from op_exec.C:4:0:
+op_exec.h:8:10: fatal error: PtrHandler.h: No such file or directory
+ #include "PtrHandler.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+Using built-in specs.
+COLLECT_GCC=/opt/gcc/7.1.0/bin/../snos/bin/g++
+COLLECT_LTO_WRAPPER=/opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/lto-wrapper
+Target: x86_64-suse-linux
+Configured with: ../cray-gcc-7.1.0-201705230545.65f29659747b4/configure --prefix=/opt/gcc/7.1.0/snos --disable-nls --libdir=/opt/gcc/7.1.0/snos/lib --enable-languages=c,c++,fortran --with-gxx-include-dir=/opt/gcc/7.1.0/snos/include/g++ --with-slibdir=/opt/gcc/7.1.0/snos/lib --with-system-zlib --enable-shared --enable-__cxa_atexit --build=x86_64-suse-linux --with-ppl --with-cloog --disable-multilib
+Thread model: posix
+gcc version 7.1.0 20170502 (Cray Inc.) (GCC) 
+COLLECT_GCC_OPTIONS='-march=core-avx2' '-static' '-D' '__CRAYXC' '-D' '__CRAY_HASWELL' '-D' '__CRAYXT_COMPUTE_LINUX_TARGET' '-u' 'pthread_mutex_destroy' '-D' '__TARGET_LINUX__' '-v' '-MM' '-O0' '-g' '-D' 'MPICH_IGNORE_CXX_SEEK' '-I' '.' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc' '-I' '/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc' '-D' 'IOTIMER' '-D' 'FEATURE_PREALLOC_MEM' '-D' 'FEATURE_RAND_DEST=6' '-I' '/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include' '-I' '/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include' '-I' '/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include' '-I' '/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include' '-I' '/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include' '-I' '/opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include' '-I' '/opt/cray/pe/pmi/5.0.12/include' '-I' '/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include' '-I' '/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include' '-I' '/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include' '-I' '/opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include' '-I' '/opt/cray-hss-devel/8.0.0/include' '-L/opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/dmapp/default/lib64' '-L/opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/lib' '-L/opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/lib64' '-L/opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/lib64' '-L/opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/lib64' '-L/opt/cray/pe/pmi/5.0.12/lib64' '-L/opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/lib64' '-L/opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/lib64' '-L/opt/cray/pe/atp/2.1.1/libApp' '-L/opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/lib64'
+ /opt/gcc/7.1.0/snos/libexec/gcc/x86_64-suse-linux/7.1.0/cc1plus -E -quiet -v -I . -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0 -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc -I /global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc -I /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include -I /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include -I /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include -I /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include -I /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include -I /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include -I /opt/cray/pe/pmi/5.0.12/include -I /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include -I /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include -I /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include -I /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include -I /opt/cray-hss-devel/8.0.0/include -MM -D_GNU_SOURCE -D __CRAYXC -D __CRAY_HASWELL -D __CRAYXT_COMPUTE_LINUX_TARGET -D __TARGET_LINUX__ -D MPICH_IGNORE_CXX_SEEK -D IOTIMER -D FEATURE_PREALLOC_MEM -D FEATURE_RAND_DEST=6 replay.C -march=core-avx2 -g -fworking-directory -O0
+ignoring nonexistent directory "/opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/../../../../x86_64-suse-linux/include"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../stackwalk/ver0"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/common/inc"
+ignoring nonexistent directory "/global/u2/f/fmuelle/ScalaTraceV4/replay/../../record/inc"
+#include "..." search starts here:
+#include <...> search starts here:
+ .
+ /opt/cray/pe/libsci/17.09.1/GNU/6.1/x86_64/include
+ /opt/cray/pe/mpt/7.6.2/gni/mpich-gnu/5.1/include
+ /opt/cray/rca/2.2.15-6.0.4.1_13.1__g46acb0f.ari/include
+ /opt/cray/alps/6.4.1-6.0.4.0_7.2__g86d0f3d.ari/include
+ /opt/cray/xpmem/2.2.2-6.0.4.0_3.1__g43b0535.ari/include
+ /opt/cray/gni-headers/5.0.11-6.0.4.0_7.2__g7136988.ari/include
+ /opt/cray/pe/pmi/5.0.12/include
+ /opt/cray/ugni/6.0.14-6.0.4.0_14.1__ge7db4a2.ari/include
+ /opt/cray/udreg/2.3.2-6.0.4.0_12.2__g2f9c3ee.ari/include
+ /opt/cray/wlm_detect/1.2.1-6.0.4.0_22.1__gd26a3dc.ari/include
+ /opt/cray/krca/2.2.2-6.0.4.0_5.2__g4614cf3.ari/include
+ /opt/cray-hss-devel/8.0.0/include
+ /opt/gcc/7.1.0/snos/include/g++
+ /opt/gcc/7.1.0/snos/include/g++/x86_64-suse-linux
+ /opt/gcc/7.1.0/snos/include/g++/backward
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include
+ /usr/local/include
+ /opt/gcc/7.1.0/snos/include
+ /opt/gcc/7.1.0/snos/lib/gcc/x86_64-suse-linux/7.1.0/include-fixed
+ /usr/include
+End of search list.
+replay.C:6:10: fatal error: Trace.h: No such file or directory
+ #include "Trace.h"
+          ^~~~~~~~~
+compilation terminated.
+make: *** No rule to make target 'mpi_util.o', needed by 'replay'.  Stop.

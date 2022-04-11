@@ -1,0 +1,432 @@
+##################################################################
+# Introduction
+##################################################################
+
+This is a distribution of ScalaTrace 4, the next generation of the 
+ScalaTrace tool that collects communication and I/O traces for parallel 
+applications using the Message Passing Interface. 
+
+
+
+##################################################################
+# To compile
+##################################################################
+
+This ScalaTrace 2 package contains two components: ScalaTrace (the
+tracing tool) and ScalaReplay (a replay engine for the ScalaTrace
+traces). 
+
+To compile ScalaTrace,
+
+* cd ./record/config
+* Edit Makefile.config
+* cd ..
+* make
+* cd ..
+* cd ./stackwalk/ver0
+* cd unwind/libunwind-1.1
+* ./configure
+* make
+* cd ../..
+################################################
+* make 
+
+Configurable options:
+
+Edit ./record/libsrc/Makefile.libsrc
+
+* RETAIN_TAGS:
+n: ignore TAG for MPI_Send, MPI_Recv, etc, for better compression
+y: preserve TAG
+
+* PARAM_HISTO:
+n: fully lossless tracing
+y: record SRC/DEST/COUNT parameters with histograms when lossless 
+   compression fails
+   More configuration:
+   HISTO_THRESHOLD: in ./record/common/inc/Param.h, the maximum
+                    vector length for an elastic data element to 
+                    remain lossless, e.g., HISTO_THRESHOLD = 30
+
+* SIG_DIFF: 
+integer: stack signature difference. This is the maximum number
+of different frames allowed in two signatures
+
+* LOOP_LCS:
+n: disable approximate loop matching
+y: enable approximate loop matching
+   More configuration:
+   MAX_LENGTH_DIFF: in ./record/common/inc/Trace.h, the maximum
+                    percentage difference on length for two loop
+                    iterations to be considered approximately 
+                    matching, e.g., MAX_LENGTH_DIFF = 0.2 (20%)
+* SKIP_IO:
+n: enable IO events' tracing
+y: skip(disable) IO events' tracing
+
+* IO_TIMER:
+n: disable IO_TIMER record
+y: enable IO_TIMER record
+
+* STATIC:
+n: if link with dynamic mpi library, set it to be n. scalatrace will
+   trace MPI IO event in MPI level.(If use ScalaReplay to replay the
+   trace file, set it to be n). 
+y: if link with static mpi library, set it to be y. scalatrace will
+   trace MPI IO event in lower posix level.(If use darshan replay tool
+   to replay, set it to be y).
+Note: when it's set as y, the generated trace file can not be replayed
+	by scalatrace replay, it only can be replayed by darshan replay.
+	while when set as n, it only can be replayed by scalatrace replay.
+
+To compile ScalaReplay
+
+* cd ./replay
+* Edit Makefile
+* make 
+* make install
+
+Configurable options:
+
+Edit ./replay/Makefile
+
+* HISTO_REPLAY
+n: deterministic replay, only applicable to fully lossless traces
+y: probabilistic replay, applicable to both lossless and lossy 
+   traces
+
+* RAND_DEST
+integer: maximum number of random destinations for each MPI task,
+         e.g., RAND_DEST = 10
+
+###################################################################
+# SKIP WARNING or the following error:
+fatal error: umpi_mpi_params.h: No such file or directory
+##################################################################r
+
+###################################################################
+# To link (Modify application's Makefile)
+###################################################################
+#For OPEN-MPI
+LDFLAGS += -L/opt/ohpc/pub/mpi/openmpi-gnu/1.10.4/lib -lmpi
+LIBS += -lnode -lstackwalk -L/lib64 -lstdc++ -lmpi_cxx
+
+
+#For MVAPICH2
+LDFLAGS += -L/opt/ohpc/pub/mpi/mvapich2-gnu/2.2/lib -lmpi
+LIBS += -lnode -lstackwalk -L/lib64 -lstdc++ -lmpi
+
+
+SC=/path/to/ScalaTraceV4
+LDFLAGS += -L$(SC)/record/lib -L$(SC)/stackwalk/ver0
+
+
+##################################################################
+# To run
+##################################################################
+
+To use ScalaTrace, link ScalaTrace with your application:  
+
+* ST=/path/to/ScalaTrace
+* mpicxx -g -L$(ST)/record/lib -L$(ST)/stackwalk/ver0 app.c -o app 
+  -lglob -lstackwalk -Wl,-wrap=open -Wl,-wrap=write -Wl,-wrap=read 
+  -Wl,-wrap=open64 -Wl,-wrap=creat -Wl,-wrap=close -Wl,-wrap=lseek 
+  -Wl,-wrap=lseek64 -Wl,-wrap=remove (if link with static mpi library,
+  add -static at the end)
+
+* mpirun -np <n> ./app
+  the trace file will be generated at application completion, in
+  the folder trace_<n>
+* Compression levels:
+  libdump.a: trace with no compression
+  libnode.a: trace with intra-node loop compression
+  libglob.a: trace with both intra-node and inter-node compression
+
+To use ScalaReplay, use an application trace (T) as the input
+
+* SR=/path/to/ScalaTrace/replay
+* mpirun -np <n> $(ST)/replay /path/to/trace/T
+
+
+
+##################################################################
+# Example
+##################################################################
+
+See ./test/iosample (with IO)
+
+See Sweep3D:
+http://www2.warwick.ac.uk/fac/sci/dcs/people/research/csrcbc/research/wppt/documentation/simulator/models/sweep3d/
+
+See NAS Parallel Benchmarks:
+https://www.nas.nasa.gov/publications/npb.html
+
+
+
+##################################################################################################
+# Introduction - Chameleon
+##################################################################################################
+
+This work, called Chameleon, contributes an online,
+fast, and scalable signature-based clustering algorithm. Un-
+like related work, namely ScalaTrace V2, that generates the
+compressed global trace within MPI_Finalize, Chameleon
+creates this trace incrementally during the execution of appli-
+cations and only for lead processes. Chameleon also identifies
+different program phases, clusters processes exhibiting dif-
+ferent execution behavior, and creates a compressed global
+trace file on-the-fly. This process happens incrementally at
+interim execution points of applications. The resulting system
+combines low overhead at the clustering level a lower time
+complexity of log(P) than prior work.
+
+
+##################################################################################################
+# To compile
+##################################################################################################
+unzip ScalaTraceV4.zip
+cd ../ScalaTraceV4
+
+* cd ./record/config
+* Edit Makefile.config
+* cd ..
+* make
+* cd ..
+* cd ./stackwalk/ver0
+* cd libunwind-1.1
+* ./configure
+* make
+* cd ..
+
+
+##################################################################################################
+# Automatic Marker   
+##################################################################################################
+#In case you do not have access to the source code, to leverage Chameleon benefits, you can use 
+#automatic markers. First, you need to find potential markers (i.e., MPI collective events).
+
+cd ScalaTraceV4/record
+#edit libsrc/Makefile.libsrc
+ONLINE_CLUSTERING=y
+MANUAL_MARKER=n
+AUTOMATIC_MARKER=n
+PRINT_POTENTIAL_MARKER=y
+
+make
+
+#"PRINT_POTENTIAL_MARKER" would prints out potential markers on the screen.
+#For example, under this configuration, if we run Sweep3D with ScalaTraceV4, it prints out
+#MPI_Allreduce in every iteration twice. Therefore, MPI_Allreduce is a good candidate to be a marker.
+
+#Sweep3D
+cd ../../example/sweep3d-2.2d/
+make
+rm sweep3d-results/*
+./runsweep3d
+
+#Application prints out the potential markers on the screen;
+#for example, for sweep3D, in every iterarion, it calls two MPI_Allreduce:
+#### Chameleon: Potential Marker => MPI_Allreduce
+#### Chameleon: Potential Marker => MPI_Allreduce
+
+#Therefore, MPI_Allreduce is a good candidate 
+#Now, return back to ScalaTraceV4
+cd ../../ScalaTraceV4/record/
+#edit libsrc/Makefile.libsrc
+ONLINE_CLUSTERING=y
+MANUAL_MARKER=n
+PRINT_POTENTIAL_MARKER=n
+AUTOMATIC_MARKER=y
+ALLREDUCE_MARKER=y
+make clean
+make
+
+cd ../../example/sweep3d-2.2d/
+make clean
+make
+#Specify the number of clusters
+export K_CLUSTERS=9
+#Specify the number of marker calls - for every two MPI_Allreduce calls
+#In this case Chameleon skips the odd calls and only consider the even calls 
+# as the proper marker
+export MARKER_CALL_FREQ=2
+
+rm sweep3d-results/*
+./runsweep3d
+#### Chameleon: State AT: 2 State C: 2 State L: 9
+
+#BT (MPI_Waitall)
+#For benchmarks like BT, which has MPI_Waitall (not an MPI collective event), 
+#we must first make sure that all processes participate in this MPI call.
+
+cd ../../ScalaTraceV4/record/
+#edit libsrc/Makefile.libsrc
+ONLINE_CLUSTERING=y
+MANUAL_MARKER=n
+PRINT_POTENTIAL_MARKER=n
+AUTOMATIC_MARKER=y
+#make sure all automatic markers are off
+CHECK_WAITALL_MARKER=y
+#this switch calls an PMPI_Barrier whithin MPI_Waitall, so if your application finishes
+#correctly then you can use MPI_Waitall as a marker.
+make clean
+make
+
+cd ../../example/NAS
+#comment any manual marker
+#edit BT/bt.f 
+make bt CLASS=A NPROCS=16
+
+#BT passes this test, so to enable the MPI_Waitall as a marker:
+cd ../../../ScalaTraceV4/record/
+#edit libsrc/Makefile.libsrc
+ONLINE_CLUSTERING=y
+MANUAL_MARKER=n
+PRINT_POTENTIAL_MARKER=n
+AUTOMATIC_MARKER=y
+CHECK_WAITALL_MARKER=n
+WAITALL_MARKER=y
+
+make clean
+make
+
+
+cd ../../example/NAS
+make bt CLASS=A NPROCS=16
+export MARKER_CALL_FREQ=1
+#### Chameleon: Clustering Elapsed Time 0 clicks (0.000000 seconds).
+#### Chameleon: selected rank is : 0
+#### Chameleon: State AT: 4 State C: 1 State L: 197
+#### Chameleon: Overall Execution Overhead:
+#### Chameleon: It took me 170000 clicks (0.170000 seconds).
+
+export MARKER_CALL_FREQ=2
+#### Chameleon: Clustering Elapsed Time 0 clicks (0.000000 seconds).
+#### Chameleon: selected rank is : 0
+#### Chameleon: State AT: 3 State C: 1 State L: 97
+
+
+
+#LU
+#If your application does not support any MPI collective event frequently, and
+#you do not have access to the source code to add a manual marker, then use
+#the following configuration:
+#edit libsrc/Makefile.libsrc
+ONLINE_CLUSTERING=y
+MANUAL_MARKER=n
+PRINT_POTENTIAL_MARKER=n
+AUTOMATIC_MARKER=y
+make clean
+make
+
+#This configuration calls clustering at MPI_Finalized, so the tracing could 
+#benefit from smaller execution overhead at the end of the program.
+
+cd ../../example/NAS
+make lu CLASS=A NPROCS=16
+export K_CLUSTERS=9
+mpirun -np 16 bin/lu.A.16
+
+
+
+##################################################################################################
+# Manual Marker  - RECOMMENDATION: In case you have access to the application source code
+##################################################################################################
+cd record
+#edit libsrc/Makefile.libsrc
+ONLINE_CLUSTERING=y
+MANUAL_MARKER=y
+
+make
+cd ../stackwalk/ver0/
+make
+cd ../../replay
+make
+cd ../..
+#unzip example.zip
+cd example/NAS
+edit config/make.def
+edit sys/make.common
+
+
+#To add a marker to the code:
+	
+#1) FORTRAN
+#Compile ScalaTraceV4 with Fortran oprtion on
+#edit libsrc/Makefile.libsrc
+FORTRAN_MARKER=y
+
+#Add the Marker to the source code:
+#	If your code is Fortran, this switch must be on.
+#	use the following sample code to enable Marker:
+		#Define variables
+		  integer comm_world, group_world, new_comm, old_comm, ierr
+
+		#Add the following code at the end of the main loop.
+		#This example is for NAS-BT
+		#add the follooiwng lines before "call setup_mpi" in BT/bt.f
+
+	       call mpi_init(error)
+	       call mpi_comm_dup(MPI_COMM_WORLD, new_comm, ierr)
+	       call mpi_comm_size(new_comm, total_nodes, ierr)
+	     
+	       call setup_mpi
+		
+	       #NOTE: Modify BT/setup_mpi.f
+	       #comment call mpi_init(error)	
+		
+	       #add the following lines of code to BT/bt.f
+
+	       if (mod(step, 1) .eq. 0 .or. step .eq. niter .or.
+	     >        step .eq. 1) then
+
+	              call MPI_BARRIER(new_comm , ierr )
+
+	       endif
+
+#Assumptions: 
+#            1) Make sure to duplicate the communicator, and right after that call "mpi_comm_size".
+#            2) Make sure this is the first time the program calls "mpi_comm_size".   
+
+
+	If your code is C/C++, this switch must be off. 
+	Define a new communicator in your code as follows:
+
+		  MPI_Comm  new_comm;
+	
+  		  MPI_Init(&argc, &argv);
+	          MPI_Comm_dup(MPI_COMM_WORLD, new_comm, ierr)
+	          MPI_Comm_size(new_comm, total_nodes, ierr)
+	       	  MPI_Barrier(new_comm); 
+
+
+MARKER_VALUE=y
+#This switch helps to print the value of communicator for any MPI_Barrier. 
+ 
+
+
+#BT
+#edit BT/bt.f
+#add the marker as mentioned above
+
+make bt NPROCS=16 CLASS=A 
+export K_CLUSTERS=3
+export MARKER_CALL_FREQ=1 #every event
+mpirun -np 16 bin/bt.A.16
+#### Chameleon: State AT: 2 State C: 1 State L: 197
+
+All tracing overhead:
+#### Chameleon: It took me 230000 clicks (0.230000 seconds).
+Clustering overhead only (excl. markers+inter-compression):
+#### Chameleon: Clustering Elapsed Time 0 clicks (0.000000 seconds).
+
+mpirun -np 16 ../../../ScalaTraceV4/replay/replay trace_16/Chameleon
+#Execution time: 41.184553
+
+Class A has 200 iteration
+export MARKER_CALL_FREQ=20 #every 20 events, paper has 25
+#### Chameleon: State AT: 1 State C: 1 State L: 8
+
+mpirun -np 16 ../../../ScalaTraceV4/replay/replay trace_16/Chameleon
+#Execution time: 41.83122
+

@@ -1,0 +1,32 @@
+##################################################################
+# Introduction
+##################################################################
+ScalaExtrap2 generates a single trace from analyzing a set of traces
+from small number of ranks.
+
+##################################################################
+# Steps to compile
+##################################################################
+step 1: Compile ScalaTrace-II library. (Please refer README of ScalaTraceV2)
+	make sure "make install" in replay directory
+
+
+step 2: compile ScalaExtrap2 library. Upon successful compilation, it generates the executable with name "extrap".
+	cd ExtrapV2
+	make
+
+
+
+##################################################################
+# Steps to execute
+##################################################################
+step 1: Generate four traces of small number of ranks. (Please refer README of ScalaTraceV2)
+
+step 2: Extrapolate the four traces into trace of traget number of ranks
+
+	cd ExtrapV2
+	./extrap -t <traget number of ranks> -d /path/to/traces-of-small-ranks <trace1> <trace2> <trace3> <trace4>
+
+Example: ./extrap -t 400 -d IOR/files/chunk/pvfs 8 16 24 32
+
+It'll generate a e400 file in the director IOR/files/chunk/pvfs

@@ -1,0 +1,34 @@
+##################################################################
+# Introduction
+##################################################################
+ScalaBenchGen2 generates the benchmark programs from ScalatraceV2 traces.
+
+##################################################################
+# Steps to compile
+##################################################################
+step 1: Compile ScalaTrace-II library. (Please refer README of ScalaTraceV2)
+
+step 2: compile ScalaBenchGen2 library. Upon successful compilation, it generates the executable with name "generator".
+	cd c_genV2
+	make
+
+
+
+##################################################################
+# Steps to execute
+##################################################################
+step 1: Generate application trace. (Please refer README of ScalaTraceV2)
+
+step 2: Generate benchmark program. Generates benchmark program in files "main.c" and "util.c"
+	cd c_genV2
+	./generator <glob_trace_file>
+
+Example: ./generator /trace_folder/0
+
+step3: Compile and execute benchmark program like a normal MPI program.
+	Compile: 
+		edit the IOTIMER in util.c to choose whether use IOTIMER
+		mpicc main.c util.c -o <executable_name>
+
+	Execute:
+		mpirun -np <num_nodes> <executable_name>	

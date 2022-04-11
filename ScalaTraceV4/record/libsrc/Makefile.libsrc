@@ -1,0 +1,318 @@
+include ../../config/Makefile.config
+
+###############################################
+## Options
+###############################################
+
+# Send/Recv tags
+RETAIN_TAGS=n
+
+# Record SRC/DEST/COUNT parameters with histogram when compression fails
+PARAM_HISTO=n
+
+# Stack signature difference, this is the maximum number of different 
+# frames allowed in two signatures
+SIG_DIFF=0
+
+# Compress loop iterations using LCS analysis
+LOOP_LCS=n
+
+ONLINE_CLUSTERING=n
+ifeq ($(ONLINE_CLUSTERING),y)
+MPIFLAGS += -DONLINE_CLUSTERING
+endif
+
+
+ifeq ($(ONLINE_CLUSTERING),y)
+
+ #1) To check the value of marker 
+ # This is helpful for Manual Marker
+ MARKER_VALUE=y
+ ifeq ($(MARKER_VALUE),y)
+ MPIFLAGS += -DMARKER_VALUE
+ endif
+
+ #2) Tracing off for non-lead nodes
+ TURN_OFF_TRACING_FOR_NONE_LEADS=y
+ ifeq ($(TURN_OFF_TRACING_FOR_NONE_LEADS),y)
+ MPIFLAGS += -DTURN_OFF_TRACING_FOR_NONE_LEADS
+ endif
+
+ #3) Enable Manual Marker
+ MANUAL_MARKER=y
+ ifeq ($(MANUAL_MARKER),y)
+ MPIFLAGS += -DMANUAL_MARKER
+ # 3.1) Fortran or C/C++?
+ FORTRAN_MARKER=y
+ ifeq ($(FORTRAN_MARKER),y)
+ MPIFLAGS += -DFORTRAN_MARKER
+ endif
+
+endif
+
+#4) Print Potential Markers for Automatic Marking
+PRINT_POTENTIAL_MARKER=n
+ifeq ($(PRINT_POTENTIAL_MARKER),y)
+MPIFLAGS += -DPRINT_POTENTIAL_MARKER
+endif
+
+#5) Enable Automatic Marker
+AUTOMATIC_MARKER=n
+ifeq ($(AUTOMATIC_MARKER),y)
+MPIFLAGS += -DAUTOMATIC_MARKER
+endif
+
+#5.1) Enable Specific MPI Collectives as Markers
+ifeq ($(AUTOMATIC_MARKER),y)
+ ALLGATHER_MARKER=n
+ ifeq ($(ALLGATHER_MARKER),y)
+ MPIFLAGS += -DALLGATHER_MARKER
+ endif
+
+ ALLREDUCE_MARKER=n
+ ifeq ($(ALLREDUCE_MARKER),y)
+ MPIFLAGS += -DALLREDUCE_MARKER
+ endif
+
+ ALLTOALL_MARKER=n
+ ifeq ($(ALLTOALL_MARKER),y)
+ MPIFLAGS += -DALLTOALL_MARKER
+ endif
+
+ ALLTOALLV_MARKER=n
+ ifeq ($(ALLTOALLV_MARKER),y)
+ MPIFLAGS += -DALLTOALLV_MARKER
+ endif
+
+ BARRIER_MARKER=n
+ ifeq ($(BARRIER_MARKER),y)
+ MPIFLAGS += -DBARRIER_MARKER
+ endif
+
+ BCAST_MARKER=n
+ ifeq ($(BCAST_MARKER),y)
+ MPIFLAGS += -DBCAST_MARKER
+ endif
+
+ GATHER_MARKER=n
+ ifeq ($(GATHER_MARKER),y)
+ MPIFLAGS += -DGATHER_MARKER
+ endif
+
+ REDUCE_MARKER=n
+ ifeq ($(REDUCE_MARKER),y)
+ MPIFLAGS += -DREDUCE_MARKER
+ endif
+
+ SCATTER_MARKER=n
+ ifeq ($(SCATTER_MARKER),y)
+ MPIFLAGS += -DSCATTER_MARKER
+ endif
+
+ SCATTERV_MARKER=n
+ ifeq ($(SCATTERV_MARKER),y)
+ MPIFLAGS += -DSCATTERV_MARKER
+ endif
+
+endif
+
+#5.2) Special case for MPI_WAITALL
+ifeq ($(AUTOMATIC_MARKER),y)
+#5.2.1) Before using this marker, make sure the program 
+# runs under the following check; if it stuck then this is not 
+# a proper marker
+CHECK_WAITALL_MARKER=n
+ifeq ($(CHECK_WAITALL_MARKER),y)
+MPIFLAGS += -DCHECK_WAITALL_MARKER
+endif
+
+
+#5.2.2) After making sure, the program works under the above
+# check, then enable MPI_Waitall as a marker
+WAITALL_MARKER=n
+ifeq ($(WAITALL_MARKER),y)
+MPIFLAGS += -DWAITALL_MARKER
+endif
+
+endif
+
+
+#ONLINE_CLUSTERING
+endif
+
+#skip communication
+SKIP_COMM=n
+
+# IO part
+SKIP_IO=y
+
+#IO time record
+IO_TIMER=n
+
+#link with static mpi library, if STATIC=y, it'll trace the lower level of MPI-IO
+#but ignore the MPI level. otherwise, it'll get the MPI level, ignoring the lower level
+STATIC=n
+
+#defined to record the time token of each event, if COM_COMM=y, record the comm time of
+#communication events, if IO_COMM=y, record the comm time of IO events, otherwise don't
+#record 
+COM_COMM=y
+IO_COMM=n
+
+ifeq ($(RETAIN_TAGS),y)
+MPIFLAGS += -DFEATURE_RETAIN_TAGS
+endif
+ifeq ($(PARAM_HISTO),y)
+MPIFLAGS += -DFEATURE_PARAM_HISTO
+endif
+MPIFLAGS += -DFEATURE_SIG_DIFF=$(SIG_DIFF)
+ifeq ($(LOOP_LCS),y)
+MPIFLAGS += -DFEATURE_LOOP_LCS
+endif
+ifeq ($(SKIP_COMM),y)
+MPIFLAGS += -DFEATURE_SKIP_COMM
+endif
+ifeq ($(SKIP_IO),y)
+MPIFLAGS += -DFEATURE_SKIP_IO
+endif
+ifeq ($(STATIC),y)
+MPIFLAGS += -DSTATIC
+endif
+ifeq ($(IO_TIMER),y)
+MPIFLAGS += -DFEATURE_IO_TIMER
+endif
+ifeq ($(COM_COMM),y)
+MPIFLAGS += -DCOM_COMM
+endif
+ifeq ($(IO_COMM),y)
+MPIFLAGS += -DIO_COMM
+endif
+
+
+MPIFLAGS+=$(COMPRESS_FLAGS)
+
+# this fixes some warnings, but it's only needed when using mpich
+CPPFLAGS+=-DMPICH_IGNORE_CXX_SEEK
+
+
+SW_HOME=${top_srcdir}/../stackwalk/ver0
+SW_LIBS = -L$(SW_HOME) -lstackwalk
+SW_INCLUDE = -I$(SW_HOME)
+
+
+
+#### #### #### #### #### Include Dir #### #### #### #### ####
+# compilation is done from the 'DIR' folder
+# CPPFLAGS is used to generated dependencies
+CPPFLAGS+=-I${top_srcdir}/libsrc  \
+          -I${top_srcdir}/common/inc \
+          -I${top_srcdir}/libsrc/${DIR} \
+	      $(SW_INCLUDE)
+
+
+#### #### #### #### #### source dirs  #### #### #### #### ####
+VPATH=${top_srcdir}/common/src:${top_srcdir}/libsrc
+
+#### #### #### #### #### Object files #### #### #### #### ####
+C_SRCS = \
+	umpi_mpi.c \
+	umpi_mpi_print_ops.c \
+	umpi_mpi_lookup.c \
+	umpi_mpi_replay_ops.c \
+	umpi_mpi_pack_ops.c \
+	umpi_mpi_unpack_ops.c \
+	umpi_mpi_free_ops.c \
+	umpi_mpi_copy_ops.c \
+	umpi_internal.c \
+	umpi_posix_wrapper.c\
+	queue.c \
+	mpi_util.c \
+	util.c \
+	radix_tree.c \
+
+SCALATRACE_C_SRCS = 
+
+C_SRCS+=$(SCALATRACE_C_SRCS)
+
+
+CXX_SRCS:= \
+	Event.C \
+	Ranklist.C \
+	Param.C \
+	ParamValue.C \
+	Trace.C \
+	StackSig.C \
+	Loop.C \
+	PtrHandler.C \
+	ReqHandler.C \
+	HistoBin.C \
+	Histogram.C \
+	ValueSet.C \
+	Stat.C \
+	StatTime.C \
+	RandMnger.C \
+	Cluster.C \
+
+OTHER_SRCS:=
+
+#C_SRCS+=$(OTHER_SRCS)
+C_SRCS+=$(STACK_SIG_SRC)
+
+OBJS=$(C_SRCS:.c=.o) $(CXX_SRCS:.C=.o) 
+
+#### #### #### #### #### Wrapper generated files #### #### #### #### ####
+WRAPPER_GENERATED = \
+	umpi_mpi.c \
+	umpi_mpi.h \
+	umpi_mpi_ops.h \
+	umpi_mpi_lookup.c \
+	umpi_mpi_mgr_verify.c \
+	umpi_mpi_mgr_verify.h \
+	umpi_mpi_outfielder_verify.c \
+	umpi_mpi_outfielder_verify.h \
+	umpi_mpi_print_ops.c \
+	umpi_mpi_print_ops.h \
+	umpi_mpi_replay_ops.c \
+    umpi_mpi_replay_ops.h \
+	umpi_mpi_pack_ops.c \
+	umpi_mpi_pack_ops.h \
+	umpi_mpi_unpack_ops.c \
+	umpi_mpi_unpack_ops.h \
+	umpi_mpi_free_ops.c \
+	umpi_mpi_free_ops.h \
+	umpi_mpi_copy_ops.c \
+	umpi_mpi_copy_ops.h \
+	umpi_mpi_params.h
+
+
+MPICFLAGS+=$(MPIFLAGS)
+MPICXXFLAGS+=-DMPICH_IGNORE_CXX_SEEK $(MPIFLAGS)
+
+include ../../config/Makefile.rules
+libdump libnode libglob: $(OBJS)
+	mkdir -p ${top_srcdir}/lib/;
+	$(AR) -rv ${top_srcdir}/lib/$@.a $(OBJS)
+	mkdir -p ${top_srcdir}/inc/;
+	cp ${top_srcdir}/libsrc/${DIR}/umpi_mpi_ops.h ${top_srcdir}/inc/;
+
+libnode-r: $(OBJS)
+	$(AR) -rv ${top_srcdir}/lib/$@.a $(OBJS:$(STACK_SIG_SRC:c=o)=)
+
+libglob-r: $(OBJS)
+	$(AR) -rv ${top_srcdir}/lib/$@.a $(OBJS:$(STACK_SIG_SRC:c=o)=)
+
+$(WRAPPER_GENERATED): ${top_srcdir}/libsrc/mpi-spec.umpi.extract ${top_srcdir}/wrapper-engine/wrapper-engine.exe
+	${top_srcdir}/wrapper-engine/wrapper-engine.exe mpi 1000 < ${top_srcdir}/libsrc/mpi-spec.umpi.extract
+	@if [ "$(CONFIG_HAVE_INDENT)" = "y" ]; then \
+		indent -gnu $(WRAPPER_GENERATED); \
+	fi
+
+clean:
+	$(RM) $(WRAPPER_GENERATED) *.o *~ *.[dD] ${top_srcdir}/lib/*.a ${top_srcdir}/inc/umpi_mpi.h
+
+tags::
+	etags *.c *.h
+
+ifneq ($(MAKECMDGOALS),clean)
+  include $(C_SRCS:.c=.d) $(CXX_SRCS:.C=.D)
+endif
