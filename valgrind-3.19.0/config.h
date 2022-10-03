@@ -74,7 +74,7 @@
 /* #undef FREEBSD_VERS */
 
 /* path to GDB */
-#define GDB_PATH "/usr/bin/gdb"
+#define GDB_PATH "/no/gdb/was/found/at/configure/time"
 
 /* Define to 1 if index() and strlen() have been optimized heavily (x86 glibc
    >= 2.12) */
@@ -87,7 +87,7 @@
 #define HAVE_ASM_UNISTD_H 1
 
 /* Define to 1 if as supports fxsave64/fxrstor64. */
-#define HAVE_AS_AMD64_FXSAVE64 1
+/* #undef HAVE_AS_AMD64_FXSAVE64 */
 
 /* Define to 1 if as supports floating point phased out category. */
 /* #undef HAVE_AS_PPC_FPPO */
@@ -252,10 +252,10 @@
 #define HAVE_PTHREAD_SPIN_LOCK 1
 
 /* Define to 1 if you have the `pthread_yield' function. */
-/* #undef HAVE_PTHREAD_YIELD */
+#define HAVE_PTHREAD_YIELD 1
 
 /* Define to 1 if you have the `PTRACE_GETREGS' ptrace request. */
-#define HAVE_PTRACE_GETREGS 1
+/* #undef HAVE_PTRACE_GETREGS */
 
 /* Define to 1 if you have the `pwritev' function. */
 #define HAVE_PWRITEV 1
