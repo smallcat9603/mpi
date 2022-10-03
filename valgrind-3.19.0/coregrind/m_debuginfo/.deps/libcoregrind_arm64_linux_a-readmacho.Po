@@ -1,1 +1,4 @@
-# dummy
+m_debuginfo/libcoregrind_arm64_linux_a-readmacho.o: \
+ m_debuginfo/readmacho.c /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:
