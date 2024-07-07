@@ -26,7 +26,7 @@ make lu
 ```
 - Run
 ```
-$ mpirun -np <num_of_procs> bin/lu <matrix_size>
+mpirun -np <num_of_procs> bin/lu <matrix_size>
 ```
 
 ## K-means
@@ -37,7 +37,20 @@ make kmeans
 - Run
 ```
 mpirun -np <num_of_procs> bin/kmeans [clusters] [max_iterations] [datafile] # (default) 100 1000 ./data/obs_info.txt
-
 ```
 
+## Himeno
+- Parameter Setting
+```
+cd src/himeno
+./paramset.sh M 1 1 2 # generate new param.h
+```
+- Compile
+```
+make himeno
+```
+- Run
+```
+mpirun -np <num_of_procs> bin/himeno
+```
 

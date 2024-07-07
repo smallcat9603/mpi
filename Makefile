@@ -1,6 +1,6 @@
 CC = mpicc
 RM = /bin/rm
-PROG = mm mm_abft lu lu_abft kmeans kmeans_abft
+PROG = mm mm_abft lu lu_abft kmeans kmeans_abft himeno
 CFLAGS = -lm -lz
 
 DIR_SRC = ./src
@@ -9,6 +9,7 @@ LIB_ABFT = ${DIR_SRC}/abft.c
 DIR_MM = ${DIR_SRC}/mm
 DIR_LU = ${DIR_SRC}/lu
 DIR_KMEANS = ${DIR_SRC}/kmeans
+DIR_HIMENO = ${DIR_SRC}/himeno
 
 all : ${PROG}
 
@@ -35,6 +36,10 @@ ${DIR_BIN}/kmeans : ${DIR_KMEANS}/kmeans.c
 kmeans_abft : ${DIR_BIN}/kmeans_abft
 ${DIR_BIN}/kmeans_abft : ${DIR_KMEANS}/kmeans_abft.c ${LIB_ABFT}
 	${CC} -o $@ $^ ${CFLAGS}
+
+himeno : ${DIR_BIN}/himeno
+${DIR_BIN}/himeno : ${DIR_HIMENO}/himenoBMTxps.c 
+	${CC} -o $@ $< ${CFLAGS}
 
 clean :
 	${RM} -f ${DIR_BIN}/*
