@@ -54,3 +54,14 @@ make himeno
 mpirun -np <num_of_procs> bin/himeno
 ```
 
+## Graph500
+- Compile
+```
+cd src/graph500/mpi/
+make
+```
+- Run
+```
+cd src/graph500/mpi/
+./graph500_mpi_simple <scale> [edge-factor-default-16]
+```
