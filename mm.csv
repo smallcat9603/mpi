@@ -1,0 +1,2 @@
+num_worker, size_res, CT, absErrorBound, BER, compression ratio, time, gosa, resent, resent ratio
+4, 4096, 0, 1.000000e-06, 1.000000e-06, inf, 0.000070, 0.000000, 0, 0.000000

@@ -1,0 +1,2 @@
+nprocs, matrix size, CT, absErrorBound, BER, compression ratio, time, gosa, resent, resent ratio
+4, 16, 0, 1.000000e-06, 1.000000e-06, inf, 0.000362, 0.000000, 0, 0.000000

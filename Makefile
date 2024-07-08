@@ -1,6 +1,6 @@
 CC = mpicc
 RM = /bin/rm
-PROG = mm mm_abft lu lu_abft kmeans kmeans_abft himeno pingpong_float_comp pingpong_double_comp
+PROG = mm mm_abft mm_comp lu lu_abft lu_comp kmeans kmeans_abft kmeans_comp himeno himeno_comp pingpong_float_comp pingpong_double_comp
 CFLAGS = -lm -lz
 
 DIR_SRC = ./src
@@ -23,12 +23,20 @@ mm_abft : ${DIR_BIN}/mm_abft
 ${DIR_BIN}/mm_abft : ${DIR_MM}/mm_abft.c ${LIB_ABFT}
 	${CC} -o $@ $^ ${CFLAGS}
 
+mm_comp : ${DIR_BIN}/mm_comp
+${DIR_BIN}/mm_comp : ${DIR_MM}/mm_comp.c ${LIB_COMP}
+	${CC} -o $@ $^ ${CFLAGS}
+
 lu : ${DIR_BIN}/lu
 ${DIR_BIN}/lu : ${DIR_LU}/lu.c 
 	${CC} -o $@ $< ${CFLAGS}
 
 lu_abft : ${DIR_BIN}/lu_abft
 ${DIR_BIN}/lu_abft : ${DIR_LU}/lu_abft.c ${LIB_ABFT}
+	${CC} -o $@ $^ ${CFLAGS}
+
+lu_comp : ${DIR_BIN}/lu_comp
+${DIR_BIN}/lu_comp : ${DIR_LU}/lu_comp.c ${LIB_COMP}
 	${CC} -o $@ $^ ${CFLAGS}
 
 kmeans : ${DIR_BIN}/kmeans
@@ -39,9 +47,17 @@ kmeans_abft : ${DIR_BIN}/kmeans_abft
 ${DIR_BIN}/kmeans_abft : ${DIR_KMEANS}/kmeans_abft.c ${LIB_ABFT}
 	${CC} -o $@ $^ ${CFLAGS}
 
+kmeans_comp : ${DIR_BIN}/kmeans_comp
+${DIR_BIN}/kmeans_comp : ${DIR_KMEANS}/kmeans_comp.c ${LIB_COMP} 
+	${CC} -o $@ $^ ${CFLAGS}
+
 himeno : ${DIR_BIN}/himeno
 ${DIR_BIN}/himeno : ${DIR_HIMENO}/himenoBMTxps.c 
 	${CC} -o $@ $< ${CFLAGS}
+
+himeno_comp : ${DIR_BIN}/himeno_comp
+${DIR_BIN}/himeno_comp : ${DIR_HIMENO}/himenoBMTxps_comp.c ${LIB_COMP} 
+	${CC} -o $@ $^ ${CFLAGS}
 
 pingpong_float_comp : ${DIR_BIN}/pingpong_float_comp
 ${DIR_BIN}/pingpong_float_comp : ${DIR_PINGPONG}/pingpong_float_comp.c ${LIB_COMP} 
