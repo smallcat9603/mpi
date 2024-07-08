@@ -1,15 +1,17 @@
 CC = mpicc
 RM = /bin/rm
-PROG = mm mm_abft lu lu_abft kmeans kmeans_abft himeno
+PROG = mm mm_abft lu lu_abft kmeans kmeans_abft himeno pingpong_float_comp pingpong_double_comp
 CFLAGS = -lm -lz
 
 DIR_SRC = ./src
 DIR_BIN = ./bin
 LIB_ABFT = ${DIR_SRC}/abft.c
+LIB_COMP = ${DIR_SRC}/dataCompression.c
 DIR_MM = ${DIR_SRC}/mm
 DIR_LU = ${DIR_SRC}/lu
 DIR_KMEANS = ${DIR_SRC}/kmeans
 DIR_HIMENO = ${DIR_SRC}/himeno
+DIR_PINGPONG = ${DIR_SRC}/pingpong
 
 all : ${PROG}
 
@@ -40,6 +42,14 @@ ${DIR_BIN}/kmeans_abft : ${DIR_KMEANS}/kmeans_abft.c ${LIB_ABFT}
 himeno : ${DIR_BIN}/himeno
 ${DIR_BIN}/himeno : ${DIR_HIMENO}/himenoBMTxps.c 
 	${CC} -o $@ $< ${CFLAGS}
+
+pingpong_float_comp : ${DIR_BIN}/pingpong_float_comp
+${DIR_BIN}/pingpong_float_comp : ${DIR_PINGPONG}/pingpong_float_comp.c ${LIB_COMP} 
+	${CC} -o $@ $^ ${CFLAGS}
+
+pingpong_double_comp : ${DIR_BIN}/pingpong_double_comp
+${DIR_BIN}/pingpong_double_comp : ${DIR_PINGPONG}/pingpong_double_comp.c ${LIB_COMP} 
+	${CC} -o $@ $^ ${CFLAGS}
 
 clean :
 	${RM} -f ${DIR_BIN}/*
