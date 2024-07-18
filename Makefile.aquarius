@@ -1,7 +1,7 @@
 CC = mpicc
 RM = /bin/rm
 PROG = mm mm_abft mm_comp lu lu_abft lu_comp kmeans kmeans_abft kmeans_comp himeno himeno_comp pingpong_float_comp pingpong_double_comp
-CFLAGS = -lm -lz
+CFLAGS = -O3 -march=native -lm -lz
 
 DIR_SRC = ./src
 DIR_BIN = ./bin
