@@ -1,11 +1,11 @@
 #!/bin/sh
 #PJM -N "SYStest-waitio-socket"
-#PJM -L rscgrp=coupler-lec-a
+#PJM -L rscgrp=coupler-a
 #PJM -L node=1
 #PJM --mpi proc=1
 #PJM --omp thread=1
 #PJM -L elapse=00:15:00
-#PJM -g gt00
+#PJM -g gz00
 #PJM -j
 #PJM -e err
 
