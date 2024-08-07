@@ -1,11 +1,11 @@
 #!/bin/sh
 #------ pjsub option --------#
 #PJM -N "test1"
-#PJM -L rscgrp=coupler-lec-a
+#PJM -L rscgrp=coupler-a
 #PJM -L node=1
 #PJM --mpi proc=2
 #PJM -L elapse=00:05:00
-#PJM -g gt00
+#PJM -g gz00
 #PJM -j
 #------- Program execution -------#
 

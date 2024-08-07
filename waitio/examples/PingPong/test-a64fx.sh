@@ -1,10 +1,10 @@
 #!/bin/sh
 #------ pjsub option --------#
-#PJM -L rscgrp=lecture-o
+#PJM -L rscgrp=regular-o
 #PJM -L node=1
 #PJM --mpi proc=2
 #PJM -L elapse=00:02:00
-#PJM -g gt00
+#PJM -g gz00
 #PJM -j
 #------- Program execution -------#
 
